@@ -38,7 +38,7 @@ class MainComponent extends React.Component {
   render() {
     return (
       <div className="main">
-				<BootstrapTable data={data}>
+				<BootstrapTable data={data} striped hover condensed height='520' scrollTop={ 'Top' }>
 					<TableHeaderColumn dataField='username' isKey>Product ID</TableHeaderColumn>
 					<TableHeaderColumn dataField='alltime'>Product Name</TableHeaderColumn>
 					<TableHeaderColumn dataField='recent'>Product Price</TableHeaderColumn>
