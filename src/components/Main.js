@@ -3,6 +3,7 @@ require('styles/Main.css');
 
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+//import $ from 'jquery';
 
 //var data = require('json!../data/alltime.json');
 //var data = require('json!..https://fcctop100.herokuapp.com/api/fccusers/top/recent');
@@ -18,19 +19,21 @@ function imageName(cell, row) {
 	return (<div className="imageNameDiv"><img className="inDiv" style={{width:50}} src={row.img}/><p className="inDiv">{row.username}</p></div>) 
 }
 
-
 function indexN(cell, row, enumObject, index) {
 	return (<div>{index+1}</div>) 
 }
 
-
-//$.getJSON("https://fcctop100.herokuapp.com/api/fccusers/top/recent", function(json) {
-//	data = json; // this will show the info it in firebug console
-//	console.log(data);
-//});
-
 class MainComponent extends React.Component {
 	
+  constructor(props) {
+    super(props);
+    this.toCheckData = this.toCheckData.bind(this);
+  }
+
+	toCheckData(data) {
+		console.log(this.props.data);
+	}
+
 	render() {
     return (
       <div className="main">
@@ -40,6 +43,7 @@ class MainComponent extends React.Component {
 					<TableHeaderColumn dataField='alltime' dataSort={ true }>All time points</TableHeaderColumn>
 					<TableHeaderColumn dataField='recent' dataSort={ true }>Points in Last 30 days</TableHeaderColumn>
 				</BootstrapTable>
+
       </div>
     );
   }
