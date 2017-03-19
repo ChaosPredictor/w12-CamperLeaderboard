@@ -26,17 +26,11 @@ class AppComponent extends React.Component {
 			url: 'https://fcctop100.herokuapp.com/api/fccusers/top/recent',
 			dataType: 'json',
 			success: function( jsonData ) {
-			//	DATA = jsonData;
-				//this.handleData;
-
-			//},
-			//handleData: function(data){
-				self.setState({
+				this.setState({
 					data: jsonData
 				});
-				alert( "SUCCESS:  " + self.state.data );
-				//this.forceUpdate();
-			},
+				//alert( "SUCCESS:  " + this.state.data );
+			}.bind(this),
 			error: function(xhr, status, error) {
 				alert( "ERROR: " + xhr.responseText + "; Status:" + status + "; Error:" + error);
 			}
