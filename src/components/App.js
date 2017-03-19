@@ -21,20 +21,25 @@ class AppComponent extends React.Component {
       data: DATA
     };
 		//DATA = [{"username":"sjames1958gm","img":"https://avatars.githubusercontent.com/u/4639625?v=3","alltime":5810,"recent":384,"lastUpdate":"2017-03-11T03:22:    18.809Z"},{"username":"Manish-Giri","img":"https://avatars1.githubusercontent.com/u/11348778?v=3","alltime":4412,"recent":591,"lastUpdate":"2017-03-14T18:46:1    6.027Z"}];
+		var self = this;
 		$.ajax({
 			url: 'https://fcctop100.herokuapp.com/api/fccusers/top/recent',
 			dataType: 'json',
 			success: function( jsonData ) {
-				DATA = jsonData;
-				this.setState({
+			//	DATA = jsonData;
+				//this.handleData;
+
+			//},
+			//handleData: function(data){
+				self.setState({
 					data: jsonData
 				});
-				alert( "SUCCESS:  " + this.state.data );
-				this.forceUpdate();
+				alert( "SUCCESS:  " + self.state.data );
+				//this.forceUpdate();
 			},
 			error: function(xhr, status, error) {
-				alert( "ERROR: " + xhr.responseText);
-			},
+				alert( "ERROR: " + xhr.responseText + "; Status:" + status + "; Error:" + error);
+			}
 			//error: function( jsonData ) {
 			//	alert( "ERROR" );
 				//DATA = require('json!../data/alltime.json');
@@ -43,10 +48,10 @@ class AppComponent extends React.Component {
 				//	data: DATA
 				//});
 			//},
-			timeout: 3000
-		}.bind(this));
-  }
+			//timeout: 7000
+		});
 
+  }
 
   render() {
     return (
