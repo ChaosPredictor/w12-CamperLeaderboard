@@ -3,13 +3,6 @@ require('styles/Main.css');
 
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-//import $ from 'jquery';
-
-//var data = require('json!../data/alltime.json');
-//var data = require('json!..https://fcctop100.herokuapp.com/api/fccusers/top/recent');
-//var data;
-
-
 
 function imageFormatter(cell, row){
 	return (<img style={{width:50}} src={cell}/>)
@@ -23,15 +16,23 @@ function indexN(cell, row, enumObject, index) {
 	return (<div>{index+1}</div>) 
 }
 
+function myFunction() {
+	alert ("for test")
+}
+
 class MainComponent extends React.Component {
 	
   constructor(props) {
     super(props);
-    this.toCheckData = this.toCheckData.bind(this);
+    this.onSortChange = this.onSortChange.bind(this);
   }
 
-	toCheckData(data) {
-		console.log(this.props.data);
+  onSortChange(sortName, sortOrder) {
+    console.info('onSortChange', arguments);
+    //this.setState({
+    //  sortName,
+    //  sortOrder
+    //});
 	}
 
 	render() {
@@ -41,6 +42,7 @@ class MainComponent extends React.Component {
 					<TableHeaderColumn className="indexColumn" width="30"  dataField="img" dataFormat={indexN}>#</TableHeaderColumn>
 		      <TableHeaderColumn dataField="img" dataFormat={imageName} isKey={true}>Camper user</TableHeaderColumn>
 					<TableHeaderColumn dataField='alltime' dataSort={ true }>All time points</TableHeaderColumn>
+					<TableHeaderColumn dataField='alltime' dataSort={ true } onClick={myFunction}> Click me </TableHeaderColumn>
 					<TableHeaderColumn dataField='recent' dataSort={ true }>Points in Last 30 days</TableHeaderColumn>
 				</BootstrapTable>
 
