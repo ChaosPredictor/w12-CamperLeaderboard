@@ -27,8 +27,8 @@ class MainComponent extends React.Component {
     this.onSortChange = this.onSortChange.bind(this);
   }
 
-  onSortChange(sortName, sortOrder) {
-    console.info('onSortChange', arguments);
+  onSortChange() {
+    console.log('onSortChange', arguments);
     //this.setState({
     //  sortName,
     //  sortOrder
@@ -36,13 +36,15 @@ class MainComponent extends React.Component {
 	}
 
 	render() {
+		const options = {
+      onSortChange: this.onSortChange
+		};
     return (
       <div className="main">
-				<BootstrapTable data={this.props.data} striped hover condensed height='520' scrollTop={ 'Top' }>
+				<BootstrapTable data={this.props.data}  options={ options } striped hover condensed height='520' scrollTop={ 'Top' }>
 					<TableHeaderColumn className="indexColumn" width="30"  dataField="img" dataFormat={indexN}>#</TableHeaderColumn>
 		      <TableHeaderColumn dataField="img" dataFormat={imageName} isKey={true}>Camper user</TableHeaderColumn>
 					<TableHeaderColumn dataField='alltime' dataSort={ true }>All time points</TableHeaderColumn>
-					<TableHeaderColumn dataField='alltime' dataSort={ true } onClick={myFunction}> Click me </TableHeaderColumn>
 					<TableHeaderColumn dataField='recent' dataSort={ true }>Points in Last 30 days</TableHeaderColumn>
 				</BootstrapTable>
 
