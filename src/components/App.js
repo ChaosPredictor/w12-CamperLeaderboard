@@ -30,14 +30,21 @@ class AppComponent extends React.Component {
 			}
 			//timeout: 7000
 		});
-
+		this.handleSortChange = this.handleSortChange.bind(this);
   }
+
+	handleSortChange(sortBy) {
+		console.log(sortBy);
+	}
 
   render() {
     return (
       <div className="index">
 				<Title />
-				<Main data={this.state.data}/>
+				<Main 
+					data={this.state.data}
+					onSortChange={this.handleSortChange}
+				/>
 				<Footer />
       </div>
     );

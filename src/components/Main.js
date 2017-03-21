@@ -24,15 +24,17 @@ class MainComponent extends React.Component {
 	
   constructor(props) {
     super(props);
+		this.state = {sortBy:null};
     this.onSortChange = this.onSortChange.bind(this);
   }
 
-  onSortChange() {
+  onSortChange(sortName, sortOrder) {
     console.log('onSortChange', arguments);
-    //this.setState({
-    //  sortName,
-    //  sortOrder
-    //});
+		if (this.state.sortBy != sortName) {
+			this.setState({sortBy:sortName});
+			this.props.onSortChange(sortName);
+			console.log("change");
+		}
 	}
 
 	render() {
