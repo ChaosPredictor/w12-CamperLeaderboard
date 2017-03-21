@@ -26,7 +26,6 @@ class MainComponent extends React.Component {
 		this.state = {
 			sortName: undefined,
 			sortOrder: undefined,
-			sortBy: null,
 			data: DATA
 		};
 		var self = this;
@@ -34,7 +33,7 @@ class MainComponent extends React.Component {
 			url: 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime',
 			dataType: 'json',
 			success: function( jsonData ){
-				console.log('load SUCCESS');
+				//console.log('load SUCCESS');
 				self.setState({
 					data: jsonData
 		    });
@@ -49,15 +48,33 @@ class MainComponent extends React.Component {
   }
 
   onSortChange(sortName, sortOrder) {
-    console.log('onSortChange', arguments);
-		if (this.state.sortBy != sortName) {
-			this.setState({sortBy:sortName});
-			this.props.onSortChange(sortName);
+    //console.log('onSortChange', arguments);
+		if (this.state.sortName != sortName) {
+			this.handleSortChange(sortName);
 			//console.log("change");
 		}
 		this.setState({
 			sortName,
 			sortOrder
+		});
+	}
+
+	handleSortChange(source) {
+		var self = this;
+		$.ajax({
+			url: 'https://fcctop100.herokuapp.com/api/fccusers/top/' + source,
+			dataType: 'json',
+			success: function( jsonData ){
+				//console.log('load SUCCESS');
+				self.setState({
+					data: jsonData
+		    });
+			},
+			error: function(xhr, status, error) {
+				console.log('load ERROR' + error);
+				//alert( "ERROR: " + xhr.responseText + "; Status:" + status + "; Error:" + error);
+			}
+			//timeout: 7000
 		});
 	}
 
